@@ -17,13 +17,13 @@ We have two interfaces which defines our pattern:
 ### Player
 Fields:
 * `nickname_`**: string**
-* `team_`**: <a href="#team">Team</a>**
+* `team_`**: <a href="#team-enum--bool">Team</a>**
 * _static_ `count_`**: unsigned __int8**
 
 ### Tower
 Fields:
-* `team_`**: <a href="#team">Team</a>**
-* `side_`**: <a href="#side">Side</a>**
+* `team_`**: <a href="#team-enum--bool">Team</a>**
+* `side_`**: <a href="#side-enum--char">Side</a>**
 * `healthPoints_`**: unsigned short**
 * `players_`**: vector<IObserver*> players**
 
