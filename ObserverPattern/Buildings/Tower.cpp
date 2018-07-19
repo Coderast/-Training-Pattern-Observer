@@ -2,9 +2,10 @@
 
 Tower::Tower()
 {
+	healthPoints_ = 100;
 }
 
-Tower::Tower(Team team, Side side)
+Tower::Tower(const Team& team, const Side& side) : Tower()
 {
 	setTeam(team);
 	setSide(side);
@@ -17,9 +18,20 @@ void Tower::notifyObservers()
 	}
 }
 
+void Tower::addObserver(IObserver * player)
+{
+	players_.push_back(player);
+}
+
+void Tower::removeObserver(IObserver * player)
+{
+	auto iter = players_.begin();
+	for (; iter != players_.end() && *iter != player; iter++);
+	if (iter != players_.end()) {
+		players_.erase(iter);
+	}
+}
+
 Tower::~Tower()
 {
-	for (const auto& player : players_) {
-		delete player;
-	}
 }

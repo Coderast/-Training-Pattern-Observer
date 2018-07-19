@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 #include "../game_constants.h"
 #include "../Observer/IObservable.h"
@@ -10,48 +11,53 @@ class Tower : public IObservable
 private:
 	Team team_;
 	Side side_;
-	unsigned short healthPoionts_;
+	unsigned short healthPoints_;
 	std::vector<IObserver*> players_;
 public:
 	Tower();
-	Tower(Team team, Side side);
+	Tower(const Team &team, const Side &side);
 
 	void notifyObservers();
+	void addObserver(IObserver* player);
+	void removeObserver(IObserver* player);
 
-	inline Team getTeam() 
+	inline Team getTeam() const 
 	{
 		return team_;
 	}
-	inline void setTeam(Team team)
+	inline void setTeam(const Team &team)
 	{
 		team_ = team;
 	}
 
-	inline Side getSide()
+	inline Side getSide() const
 	{
 		return side_;
 	}
-	inline void setSide(Side side)
+	inline void setSide(const Side &side)
 	{
 		side_ = side;
 	}
 
-	inline unsigned short getHp()
+	inline unsigned short getHp() const
 	{
-		return healthPoionts_;
+		return healthPoints_;
 	}
 	inline void setHp(unsigned short healthPoints)
 	{
-		healthPoionts_ = healthPoints;
+		healthPoints_ = healthPoints;
 	}
 
-	inline void getDamage(unsigned short damage)
+	inline void makeDamage(unsigned short damage)
 	{
-		if (damage < healthPoionts_) {
-			healthPoionts_ -= damage;
+		std::cout << "===== " << (team_ == RADIANT ? "Radiant's " : "Dire's ");
+		std::cout << toString(side_);
+		std::cout << " tower got " << damage << " damage =====" << std::endl;
+		if (damage < healthPoints_) {
+			healthPoints_ -= damage;
 		}
 		else {
-			healthPoionts_ = 0;
+			healthPoints_ = 0;
 		}
 		notifyObservers();
 	}
