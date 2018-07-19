@@ -10,31 +10,31 @@ class Player : public IObserver
 {
 private:
 	std::string nickname_;
-	Side side_;
+	Team team_;
 
-	static int count_;
+	static unsigned __int8 count_;
 public:
 	Player();
-	Player(std::string nickname);
+	Player(const std::string &nickname, const Team& team);
 
 	void update(const Tower &tower);
 
-	inline void setNickname(std::string nickname)
+	inline void setNickname(const std::string &nickname)
 	{
 		nickname_ = nickname;
 	}
-	inline std::string getNickname()
+	inline std::string getNickname() const
 	{
 		return nickname_;
 	}
 
-	inline Side getSide()
+	inline Team getTeam() const
 	{
-		return side_;
+		return team_;
 	}
-	inline void setSide(Side side)
+	inline void setTeam(const Team &team)
 	{
-		side_ = side;
+		team_ = team;
 	}
 
 	virtual ~Player();
