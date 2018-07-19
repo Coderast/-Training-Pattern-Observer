@@ -1,5 +1,5 @@
 # In short
-My traning project for learning pattern "Observer" <br>
+My training project for learning pattern "Observer" <br>
 Dota notifies Players about gotten Tower damage.
 # About
 ## Classes hierarhy
